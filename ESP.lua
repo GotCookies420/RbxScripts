@@ -1,10 +1,10 @@
 local p = game.Players.LocalPlayer
+local life = 1
 
 function refreshESP(target:Player)
 	local highlight = Instance.new("Highlight")
 	local billboard = Instance.new("BillboardGui")
 	local textlabel = Instance.new("TextLabel")
-	local life = 0.01
 	
 	highlight.Parent = target.Character
 	billboard.Parent = target.Character
@@ -24,8 +24,8 @@ function refreshESP(target:Player)
 	game.Debris:AddItem(textlabel, life)
 end
 
-game["Run Service"].RenderStepped:Connect(function()
+while task.wait(life) do
 	for _, enemy in pairs(game.Players:GetPlayers()) do
 		refreshESP(enemy)
 	end
-end)
+end
