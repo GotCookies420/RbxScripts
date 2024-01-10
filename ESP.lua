@@ -4,8 +4,10 @@ local extra = .1
 local espItems = {}
 
 function refreshESP()
+	if espItems ~= {} then
 	for _, EI in pairs(espItems) do
 		EI:Destroy()
+	end
 	end
 
 	espItems = {}
