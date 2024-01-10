@@ -9,6 +9,6 @@ Simple.
 Go to the script file you want, get the raw link.
 Now, put the raw link in between the quotation marks (as shown below)
 
-loadstring("replace this with the raw")()
+loadstring(game:HttpGet("paste raw here", true))()
 
 That should do it.
