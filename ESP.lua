@@ -42,6 +42,8 @@ function refreshESP()
 	end
 end
 
+refreshESP()
+
 game.Players.PlayerAdded:Connect(function(p2)
 	p2.CharacterAdded:Connect(function()
 		refreshESP()
