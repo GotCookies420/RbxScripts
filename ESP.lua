@@ -7,9 +7,9 @@ function refreshESP()
 	for _, EI in pairs(espItems) do
 		EI:Destroy()
 	end
-	
+
 	espItems = {}
-	
+
 	for _, target in pairs(game.Players:GetPlayers()) do
 		local highlight = Instance.new("Highlight")
 		local billboard = Instance.new("BillboardGui")
@@ -36,13 +36,19 @@ function refreshESP()
 		textlabel.TextScaled = true
 		textlabel.Font = Enum.Font.ArialBold
 		textlabel.Text = target.Name.." ("..target.Character:FindFirstChildOfClass("Humanoid").Health.." Health)"
-		
+
 		table.insert(espItems, highlight)
 		table.insert(espItems, billboard)
 	end
 end
 
 refreshESP()
+
+for _, p2 in pairs(game.Players:GetPlayers()) do
+	p2.CharacterAdded:Connect(function()
+		refreshESP()
+	end)
+end
 
 game.Players.PlayerAdded:Connect(function(p2)
 	p2.CharacterAdded:Connect(function()
