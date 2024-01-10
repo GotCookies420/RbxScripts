@@ -1,5 +1,6 @@
 local p = game.Players.LocalPlayer
 local life = 1
+local extra = .1
 
 function refreshESP(target:Player)
 	local highlight = Instance.new("Highlight")
@@ -7,6 +8,7 @@ function refreshESP(target:Player)
 	local textlabel = Instance.new("TextLabel")
 
 	highlight.Parent = target.Character
+	highlight.OutlineTransparency = 0
 	
 	if target.Neutral == false then
 		highlight.FillColor = target.Team.TeamColor.Color
@@ -27,14 +29,8 @@ function refreshESP(target:Player)
 	textlabel.Font = Enum.Font.ArialBold
 	textlabel.Text = target.Name.." ("..target.Character:FindFirstChildOfClass("Humanoid").Health.." Health)"
 
-	game.Debris:AddItem(highlight, life)
-	game.Debris:AddItem(billboard, life)
-end
-
-while task.wait(life) do
-	for _, enemy in pairs(game.Players:GetPlayers()) do
-		refreshESP(enemy)
-	end
+	game.Debris:AddItem(highlight, life + extra)
+	game.Debris:AddItem(billboard, life + extra)
 end
 
 while task.wait(life) do
