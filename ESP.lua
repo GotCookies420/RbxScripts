@@ -26,8 +26,6 @@ end
 
 game["Run Service"].RenderStepped:Connect(function()
 	for _, enemy in pairs(game.Players:GetPlayers()) do
-		if enemy ~= p then
-			refreshESP(enemy)
-		end
+		refreshESP(enemy)
 	end
 end)
