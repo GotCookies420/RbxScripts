@@ -34,7 +34,7 @@ end
     end
   end
 
-start(game.Players.LocalPlayer.Character)
+--start(game.Players.LocalPlayer.Character)
 
 ui.Parent = game.Players.LocalPlayer.PlayerGui
 btn.Parent = ui
