@@ -56,7 +56,7 @@ function flingtarg(c)
           end)
    end)
 
-  start()
+  start(c)
   task.delay(0.5, function()
     endf()
       fip = false
