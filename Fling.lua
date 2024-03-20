@@ -2,6 +2,8 @@
 local ui = Instance.new("ScreenGui")
 local btn = Instance.new("TextButton")
 local ebtn = Instance.new("TextButton")
+local tfbtn = Instance.new("TextButton")
+local target = Instance.new("TextBox")
 local angular = nil
 print("byfron is dogshit")
 
@@ -15,6 +17,17 @@ ebtn.Text = "end fling"
 ebtn.Size = UDim2.new(0.25, 0, 0.125, 0)
 ebtn.Position = UDim2.new(0.25, 0, 0, 0)
 ebtn.TextScaled = true
+
+tfbtn.Text = "fling target"
+tfbtn.Size = UDim2.new(0.25, 0, 0.125, 0)
+tfbtn.Position = UDim2.new(0.75, 0, 0, 0)
+tfbtn.TextScaled = true
+
+target.PlaceholderText = "fling victim"
+target.Text = ""
+target.Size = UDim2.new(0.25, 0, 0.125, 0)
+target.Position = UDim2.new(0.5, 0, 0, 0)
+target.TextScaled = true
 
 function start(c)
   angular = Instance.new("AngularVelocity", c:FindFirstChild("HumanoidRootPart"))
@@ -33,15 +46,34 @@ end
       angular = nil
     end
   end
+function flingtarg(c)
+  local fip = true
+  spawn(function()
+    repeat
+        c:FindFirstChild("HumanoidRootPart").Position = game.Players:FindFirstChild(target.Text).Character:FindFirstChild("HumanoidRootPart").Position
+      until not fip
+   end)
+
+  start()
+  task.delay(0.5, function()
+    endf()
+      fip = false
+    end)
+end
 
 --start(game.Players.LocalPlayer.Character)
 
 ui.Parent = game.Players.LocalPlayer.PlayerGui
 btn.Parent = ui
 ebtn.Parent = ui
+tfbtn.Parent = ui
+target.Parent = ui
 btn.Activated:Connect(function()
     start(game.Players.LocalPlayer.Character)
   end)
 ebtn.Activated:Connect(function()
   endf()
+  end)
+tfbtn.Activated:Connect(function()
+    flingtarg(game.Players.LocalPlayer.Character)
   end)
