@@ -50,6 +50,7 @@ function flingtarg(c)
   local fip = true
   spawn(function()
     repeat
+        task.wait()
         c:FindFirstChild("HumanoidRootPart").Position = game.Players:FindFirstChild(target.Text).Character:FindFirstChild("HumanoidRootPart").Position
       until not fip
    end)
