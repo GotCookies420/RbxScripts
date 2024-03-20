@@ -51,7 +51,7 @@ function flingtarg(c)
   spawn(function()
     game:GetService("RunService").RenderStepped:Connect(function()
           if fip then
-          c:FindFirstChild("HumanoidRootPart").Position = game.Players:FindFirstChild(target.Text).Character:FindFirstChild("HumanoidRootPart").Position
+            c:PivotTo(game.Players:FindFirstChild(target.Text).Character:FindFirstChild("HumanoidRootPart").CFrame)
           end
           end)
    end)
