@@ -52,7 +52,7 @@ function flingtarg(c)
     game:GetService("RunService").RenderStepped:Connect(function()
           if fip then
             c.PrimaryPart = c:FindFirstChild("HumanoidRootPart")
-            c:SetPrimaryPartCFrame(game.Players:FindFirstChild(target.Text).Character:FindFirstChild("HumanoidRootPart").CFrame)
+            c.PrimaryPart.Position = game.Players:FindFirstChild(target.Text).Character:FindFirstChild("HumanoidRootPart").Position
           end
           end)
    end)
