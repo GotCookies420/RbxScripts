@@ -1,6 +1,4 @@
 local p = game.Players.LocalPlayer
-local life = 1
-local extra = .1
 local espItems = {}
 
 function refreshESP()
@@ -29,7 +27,7 @@ function refreshESP()
 		end
 
 		billboard.Adornee = target.Character
-		billboard.Parent = p.PlayerGui
+		billboard.Parent = target.Character
 
 		textlabel.Visible = true
 		textlabel.BackgroundTransparency = 1
@@ -37,7 +35,7 @@ function refreshESP()
 		textlabel.Size = UDim2.new({1, 0}, {1, 0})
 		textlabel.TextScaled = true
 		textlabel.Font = Enum.Font.ArialBold
-		textlabel.Text = target.Name.." ("..target.Character:FindFirstChildOfClass("Humanoid").Health.." Health)"
+		textlabel.Text = target.Name.." | "..target.Character:FindFirstChildOfClass("Humanoid").Health.." | "..tostring((target.Character:FindFirstChild("HumanoidRootPart").Position - p.Character.HumanoidRootPart.Position).magnitude or nil).." studs"
 
 		table.insert(espItems, highlight)
 		table.insert(espItems, billboard)
@@ -50,14 +48,23 @@ for _, p2 in pairs(game.Players:GetPlayers()) do
 	p2.CharacterAdded:Connect(function()
 		refreshESP()
 	end)
+
+	p2.Changed:Connect(function()
+		if p
+	end)
 end
 
 game.Players.PlayerAdded:Connect(function(p2)
+	local team = p2.Team
+			
 	p2.CharacterAdded:Connect(function()
 		refreshESP()
 	end)
-end)
 
-game.Players.PlayerRemoving:Connect(function()
-	refreshESP()
-end)
+	p2.Changed:Connect(function()
+		if p2.Team ~= team then
+			team = p2.Team
+			refreshESP()
+		end
+	end)
+end
